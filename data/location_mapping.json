@@ -1,0 +1,505 @@
+{
+  "sourceFiles": {
+    "servify": "Servify_Data_Apr26_Aug26_for_build.xlsx",
+    "masterFile": "Location_Master_File.xlsx"
+  },
+  "notes": [
+    "status='confirmed': name/state cross-checked, high confidence.",
+    "status='needs_confirmation': plausible match, not yet confirmed by the business owner (see Bangalore -> MG Road BLR).",
+    "status='unmapped': no equivalent row exists in the master file at all.",
+    "2026-09-05: 'Aptronix - Bangalore' <-> 'Service MG Road BLR' confirmed by business owner.",
+    "2026-09-05: merged the three same-centre name-variant pairs (Guntur, Vizianagaram, Siddipet) \u2014 see 'canonicalName' / 'mergedFrom' on each location entry. Bhimavaram Collection Point was NOT merged into Bhimavaram \u2014 kept separate pending explicit confirmation, same pattern as the other three.",
+    "2026-09-05: confirmed 'Bhimavaram Collection Point' stays separate from 'Bhimavaram' (evolved into a full service centre over time, not a duplicate name for the same current location) \u2014 see the 'note' field on that entry."
+  ],
+  "duplicateNameGroups": [
+    [
+      "Aptronix - Guntur RDO",
+      "Aptronix - Guntur Service Drop Off"
+    ],
+    [
+      "Aptronix - Vizianagaram Repair Drop Off",
+      "Aptronix - Vizianagaram Service Drop Off"
+    ],
+    [
+      "Aptronix - Siddipet Collection Point",
+      "Aptronix - Siddipet Service Drop Off"
+    ]
+  ],
+  "locations": {
+    "Aptronix - AS Rao Nagar Service Drop Off": {
+      "servifyLocation": "Aptronix - AS Rao Nagar Service Drop Off",
+      "recordCount": 46,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - AS Rao Nagar Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Abids": {
+      "servifyLocation": "Aptronix - Abids",
+      "recordCount": 1481,
+      "status": "confirmed",
+      "masterCentreName": "Service Abids",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1239095,
+      "canonicalName": "Aptronix - Abids",
+      "mergedFrom": []
+    },
+    "Aptronix - Aspen - Service Drop Off": {
+      "servifyLocation": "Aptronix - Aspen - Service Drop Off",
+      "recordCount": 107,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Aspen - Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Bangalore": {
+      "servifyLocation": "Aptronix - Bangalore",
+      "recordCount": 1183,
+      "status": "confirmed",
+      "masterCentreName": "Service MG Road BLR",
+      "arm": "Hithayathullah PM",
+      "state": "Karnataka",
+      "locationType": "Service Centre",
+      "shipToId": 1015299,
+      "canonicalName": "Aptronix - Bangalore",
+      "mergedFrom": []
+    },
+    "Aptronix - Banjara Hills": {
+      "servifyLocation": "Aptronix - Banjara Hills",
+      "recordCount": 2194,
+      "status": "confirmed",
+      "masterCentreName": "Service Banjara Hills",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 785002,
+      "canonicalName": "Aptronix - Banjara Hills",
+      "mergedFrom": []
+    },
+    "Aptronix - Begumpet": {
+      "servifyLocation": "Aptronix - Begumpet",
+      "recordCount": 1445,
+      "status": "confirmed",
+      "masterCentreName": "Service Begumpet",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1400168,
+      "canonicalName": "Aptronix - Begumpet",
+      "mergedFrom": []
+    },
+    "Aptronix - Bhimavaram": {
+      "servifyLocation": "Aptronix - Bhimavaram",
+      "recordCount": 535,
+      "status": "confirmed",
+      "masterCentreName": "Service Bhimavaram",
+      "arm": "Hithayathullah PM",
+      "state": "Andhra Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1858166,
+      "canonicalName": "Aptronix - Bhimavaram",
+      "mergedFrom": []
+    },
+    "Aptronix - Bhimavaram Collection Point": {
+      "servifyLocation": "Aptronix - Bhimavaram Collection Point",
+      "recordCount": 2,
+      "status": "confirmed",
+      "masterCentreName": "Service Bhimavaram",
+      "arm": "Hithayathullah PM",
+      "state": "Andhra Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1858166,
+      "canonicalName": "Aptronix - Bhimavaram Collection Point",
+      "mergedFrom": [],
+      "note": "Not merged with 'Aptronix - Bhimavaram' despite sharing the same master-file row/Ship-To ID. Per business owner (2026-09-05): this was originally a small collection/drop-off point that was later converted into the full 'Aptronix - Bhimavaram' service centre due to demand. The two are kept as separate historical entries rather than merged."
+    },
+    "Aptronix - Borivali": {
+      "servifyLocation": "Aptronix - Borivali",
+      "recordCount": 1750,
+      "status": "confirmed",
+      "masterCentreName": "Service Borivali",
+      "arm": "HO Monitored",
+      "state": "Maharashtra",
+      "locationType": "Service Centre",
+      "shipToId": 847725,
+      "canonicalName": "Aptronix - Borivali",
+      "mergedFrom": []
+    },
+    "Aptronix - Chennai VR Mall": {
+      "servifyLocation": "Aptronix - Chennai VR Mall",
+      "recordCount": 1247,
+      "status": "confirmed",
+      "masterCentreName": "Service VR Chennai",
+      "arm": "Hithayathullah PM",
+      "state": "Tamil Nadu",
+      "locationType": "Service Centre",
+      "shipToId": 1183364,
+      "canonicalName": "Aptronix - Chennai VR Mall",
+      "mergedFrom": []
+    },
+    "Aptronix - Coimbatore Service Drop off": {
+      "servifyLocation": "Aptronix - Coimbatore Service Drop off",
+      "recordCount": 1,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Coimbatore Service Drop off",
+      "mergedFrom": []
+    },
+    "Aptronix - Gachibowli": {
+      "servifyLocation": "Aptronix - Gachibowli",
+      "recordCount": 2711,
+      "status": "confirmed",
+      "masterCentreName": "Service Gachibowli",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1128350,
+      "canonicalName": "Aptronix - Gachibowli",
+      "mergedFrom": []
+    },
+    "Aptronix - Galleria Service Drop Off": {
+      "servifyLocation": "Aptronix - Galleria Service Drop Off",
+      "recordCount": 4,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Galleria Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Guntur RDO": {
+      "servifyLocation": "Aptronix - Guntur RDO",
+      "recordCount": 1,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Guntur Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Guntur Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Guntur Service Drop Off": {
+      "servifyLocation": "Aptronix - Guntur Service Drop Off",
+      "recordCount": 171,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Guntur Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Guntur Service Drop Off",
+      "mergedFrom": [
+        "Aptronix - Guntur RDO"
+      ]
+    },
+    "Aptronix - Inorbit Mall": {
+      "servifyLocation": "Aptronix - Inorbit Mall",
+      "recordCount": 2701,
+      "status": "confirmed",
+      "masterCentreName": "Service Inorbit",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1793847,
+      "canonicalName": "Aptronix - Inorbit Mall",
+      "mergedFrom": []
+    },
+    "Aptronix - Kakinada": {
+      "servifyLocation": "Aptronix - Kakinada",
+      "recordCount": 1030,
+      "status": "confirmed",
+      "masterCentreName": "Service Kakinada",
+      "arm": "Hithayathullah PM",
+      "state": "Andhra Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1632962,
+      "canonicalName": "Aptronix - Kakinada",
+      "mergedFrom": []
+    },
+    "Aptronix - Khammam Service Drop Off": {
+      "servifyLocation": "Aptronix - Khammam Service Drop Off",
+      "recordCount": 134,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Khammam Repair Drop Off",
+      "arm": "HO Monitored",
+      "state": "Telangana",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Khammam Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Logix City": {
+      "servifyLocation": "Aptronix - Logix City",
+      "recordCount": 1892,
+      "status": "confirmed",
+      "masterCentreName": "Service Logix Noida",
+      "arm": "Radhamani Munda",
+      "state": "Uttar Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1725378,
+      "canonicalName": "Aptronix - Logix City",
+      "mergedFrom": []
+    },
+    "Aptronix - Ludhiana Service Drop Off": {
+      "servifyLocation": "Aptronix - Ludhiana Service Drop Off",
+      "recordCount": 1,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Ludhiana Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Madeenaguda Repair Drop Off": {
+      "servifyLocation": "Aptronix - Madeenaguda Repair Drop Off",
+      "recordCount": 4,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Madeenaguda Repair Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Mahadevapura Service Drop Off": {
+      "servifyLocation": "Aptronix - Mahadevapura Service Drop Off",
+      "recordCount": 2,
+      "status": "unmapped",
+      "masterCentreName": null,
+      "arm": null,
+      "state": null,
+      "locationType": null,
+      "shipToId": null,
+      "canonicalName": "Aptronix - Mahadevapura Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - NAD Vizag Service Drop Off": {
+      "servifyLocation": "Aptronix - NAD Vizag Service Drop Off",
+      "recordCount": 107,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix NAD Vizag Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - NAD Vizag Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Nellore Repair Drop Off": {
+      "servifyLocation": "Aptronix - Nellore Repair Drop Off",
+      "recordCount": 162,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Nellore Repair Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Nellore Repair Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Nikol": {
+      "servifyLocation": "Aptronix - Nikol",
+      "recordCount": 78,
+      "status": "confirmed",
+      "masterCentreName": "Service Nikol",
+      "arm": "HO Monitored",
+      "state": "Gujarat",
+      "locationType": "Service Centre",
+      "shipToId": 1519513,
+      "canonicalName": "Aptronix - Nikol",
+      "mergedFrom": []
+    },
+    "Aptronix - PMC Chennai": {
+      "servifyLocation": "Aptronix - PMC Chennai",
+      "recordCount": 1462,
+      "status": "confirmed",
+      "masterCentreName": "Service PMC Chennai",
+      "arm": "Hithayathullah PM",
+      "state": "Tamil Nadu",
+      "locationType": "Service Centre",
+      "shipToId": 1775324,
+      "canonicalName": "Aptronix - PMC Chennai",
+      "mergedFrom": []
+    },
+    "Aptronix - Palladium": {
+      "servifyLocation": "Aptronix - Palladium",
+      "recordCount": 1264,
+      "status": "confirmed",
+      "masterCentreName": "Service Palladium",
+      "arm": "HO Monitored",
+      "state": "Maharashtra",
+      "locationType": "Service Centre",
+      "shipToId": 1275610,
+      "canonicalName": "Aptronix - Palladium",
+      "mergedFrom": []
+    },
+    "Aptronix - Parklane": {
+      "servifyLocation": "Aptronix - Parklane",
+      "recordCount": 2216,
+      "status": "confirmed",
+      "masterCentreName": "Service Parklane",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1015298,
+      "canonicalName": "Aptronix - Parklane",
+      "mergedFrom": []
+    },
+    "Aptronix - Sarath City": {
+      "servifyLocation": "Aptronix - Sarath City",
+      "recordCount": 3968,
+      "status": "confirmed",
+      "masterCentreName": "Service Sarath City",
+      "arm": "Naveen Sukka",
+      "state": "Telangana",
+      "locationType": "Service Centre",
+      "shipToId": 1056284,
+      "canonicalName": "Aptronix - Sarath City",
+      "mergedFrom": []
+    },
+    "Aptronix - Siddipet Collection Point": {
+      "servifyLocation": "Aptronix - Siddipet Collection Point",
+      "recordCount": 2,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Siddipet Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Telangana",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Siddipet Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Siddipet Service Drop Off": {
+      "servifyLocation": "Aptronix - Siddipet Service Drop Off",
+      "recordCount": 191,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Siddipet Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Telangana",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Siddipet Service Drop Off",
+      "mergedFrom": [
+        "Aptronix - Siddipet Collection Point"
+      ]
+    },
+    "Aptronix - Sunview": {
+      "servifyLocation": "Aptronix - Sunview",
+      "recordCount": 884,
+      "status": "confirmed",
+      "masterCentreName": "Service Sunview",
+      "arm": "Radhamani Munda",
+      "state": "Punjab",
+      "locationType": "Service Centre",
+      "shipToId": 1492371,
+      "canonicalName": "Aptronix - Sunview",
+      "mergedFrom": []
+    },
+    "Aptronix - Vanasthalipuram Service Drop Off": {
+      "servifyLocation": "Aptronix - Vanasthalipuram Service Drop Off",
+      "recordCount": 423,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Vanasthalipuram Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Telangana",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Vanasthalipuram Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Vijayanagar Service Drop Off": {
+      "servifyLocation": "Aptronix - Vijayanagar Service Drop Off",
+      "recordCount": 283,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Vijayanagar Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Karnataka",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Vijayanagar Service Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Vijayawada": {
+      "servifyLocation": "Aptronix - Vijayawada",
+      "recordCount": 3130,
+      "status": "confirmed",
+      "masterCentreName": "Service Vijaywada",
+      "arm": "Hithayathullah PM",
+      "state": "Andhra Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1133638,
+      "canonicalName": "Aptronix - Vijayawada",
+      "mergedFrom": []
+    },
+    "Aptronix - Vizag": {
+      "servifyLocation": "Aptronix - Vizag",
+      "recordCount": 2186,
+      "status": "confirmed",
+      "masterCentreName": "Service Vizag",
+      "arm": "Hithayathullah PM",
+      "state": "Andhra Pradesh",
+      "locationType": "Service Centre",
+      "shipToId": 1195295,
+      "canonicalName": "Aptronix - Vizag",
+      "mergedFrom": []
+    },
+    "Aptronix - Vizianagaram Repair Drop Off": {
+      "servifyLocation": "Aptronix - Vizianagaram Repair Drop Off",
+      "recordCount": 195,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Vizianagaram Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Vizianagaram Repair Drop Off",
+      "mergedFrom": [
+        "Aptronix - Vizianagaram Service Drop Off"
+      ]
+    },
+    "Aptronix - Vizianagaram Service Drop Off": {
+      "servifyLocation": "Aptronix - Vizianagaram Service Drop Off",
+      "recordCount": 1,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Vizianagaram Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Andhra Pradesh",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Vizianagaram Repair Drop Off",
+      "mergedFrom": []
+    },
+    "Aptronix - Warangal Service Drop Off": {
+      "servifyLocation": "Aptronix - Warangal Service Drop Off",
+      "recordCount": 104,
+      "status": "confirmed",
+      "masterCentreName": "Aptronix Warangal Service Drop Off",
+      "arm": "HO Monitored",
+      "state": "Telangana",
+      "locationType": "Repair Drop Off Location",
+      "shipToId": null,
+      "canonicalName": "Aptronix - Warangal Service Drop Off",
+      "mergedFrom": []
+    }
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "_comment": "Just two files. To update daily, overwrite these SAME filenames with your latest export from Servify and from GSX — do not rename them, and do not add extra lines here. Both accept .xlsx or .csv; the loader picks the parser by file extension.",
+  "servify": ["data/servify_latest.xlsx"],
+  "gsx": ["data/gsx_latest.xlsx"]
+}
