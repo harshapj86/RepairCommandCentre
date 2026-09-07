@@ -205,6 +205,7 @@ data/manifest.json      Points at the 2 data files below — you never edit this
 data/servify_latest.xlsx   Your Servify export — overwrite in place to update
 data/gsx_latest.xlsx    Your GSX export — overwrite in place to update
 data/location_mapping.json  Optional centre name/Area(ARM) reference — see section 13
+data/sdr_eligibility.json   Optional product-level SDR eligibility reference — see section 15
 ```
 
 ## 13. Location mapping (optional, but recommended)
@@ -216,24 +217,80 @@ present, the dashboard uses it to:
 - Add an **Area (ARM)** filter alongside Centre/City/State/Region — this is
   more reliable than the Region field for grouping centres, since Region is
   only filled in for about 1 in 5 raw records.
+- Add a **Centre Type** filter (Service Centre / Repair Drop Off Location),
+  also sourced from the master file.
 - **Merge centre name variants** that are really the same physical location
   recorded under two different strings in the raw export (found by cross-
   checking against the master file's Ship-To IDs and state/ARM data) —
   currently the Guntur, Vizianagaram, and Siddipet pairs. Without this file,
   those show up as separate rows in every centre table.
 
-If the file is missing, the dashboard still works — Area just shows
-"Unknown" for everything and no centres get merged. To update it (e.g. a
-newly opened centre, or a name variant you've spotted), edit the JSON
-directly: each entry under `locations` is keyed by the exact Servify
+If the file is missing, the dashboard still works — Area and Centre Type
+just show "Unknown" for everything and no centres get merged. To update it
+(e.g. a newly opened centre, or a name variant you've spotted), edit the
+JSON directly: each entry under `locations` is keyed by the exact Servify
 `Origin Service Location` string, and has `canonicalName` (what to display
 it as — set this equal to another entry's `servifyLocation` to merge them),
-`arm`, `state`, and `status` (`confirmed` / `needs_confirmation` /
-`unmapped`). Entries with `status: "unmapped"` mean no equivalent row was
-found in the master file — Area will show "Unknown" for those until you
-either update the master file or add a manual entry here.
+`arm`, `locationType`, `state`, and `status` (`confirmed` /
+`needs_confirmation` / `unmapped`). Entries with `status: "unmapped"` mean
+no equivalent row was found in the master file — Area and Centre Type will
+show "Unknown" for those until you either update the master file or add a
+manual entry here.
 
-## 14. Changing SDR% colour thresholds
+## 14. Device Group classification (iPhone / Apple Accessory / Other Device)
+
+The **Device Group** filter and the "SDR by Device Group" table on the
+Repair TAT tab classify every record from its `Product Model` value:
+
+- **iPhone** — any model starting with "iPhone".
+- **Apple Accessory** — matched by keyword against the model name: cables,
+  adapters, chargers, AirPods/EarPods, Beats-branded audio (Beats is
+  Apple-owned), Apple Pencil, Magic Keyboard/Mouse, phone cases, AirTag,
+  and MagSafe items. This is deliberately broader than just "cables,
+  adapters, and earphones" — it covers every non-device Apple accessory,
+  not only those three examples. Confirmed with the business owner
+  (2026-09-07).
+- **Other Device** — everything else (Mac, MacBook, iPad, Apple Watch,
+  Apple TV, HomePod, iMac, Mac mini/Studio, Studio Display).
+
+To change what counts as an accessory, edit the `ACCESSORY_KEYWORDS` list
+near the top of `js/model.js` — it's a simple substring match against the
+lower-cased Product Model, same pattern as the Repair Type mapping.
+
+## 15. SVR, SDR, and "true SDR" (SDR-eligible products only)
+
+**SVR (Same Visit Repair)** is the 0–2 hour bucket specifically. **SDR
+(Same Day Repair)** is 0–8 hours, so SVR is always a strict subset of SDR.
+Both are calculated over the exact same population — matched repairs with
+a valid Repair Creation TAT — so SVR% is mathematically guaranteed to
+never exceed SDR% anywhere in the dashboard. Both are shown together on
+the Executive Overview KPIs and throughout the Repair TAT tab.
+
+`data/sdr_eligibility.json` is a second optional reference file — a
+product-level flag confirmed by the business owner (2026-09-07) for
+whether a given Product Model can realistically be completed same-day at
+all, regardless of centre performance. Mac/iPad/Watch repairs, and
+AirPods/Apple Pencil/Beats products needing pairing, board diagnostics, or
+certification, are marked not-eligible; iPhones and simple swap items
+(cables, adapters, EarPods) are marked eligible. This drives:
+
+- The **SDR Eligibility** filter in the global filter bar (Eligible / Not
+  Eligible / Not Classified) — like every other filter, selecting a value
+  narrows the *entire* dashboard, not just the SDR number. It does not
+  change the SDR/SVR formulas themselves.
+- The **"True SDR"** table on the Repair TAT tab, which always shows All
+  Repairs vs SDR-Eligible Only vs Not Eligible side by side, regardless of
+  what the filter is currently set to — so you can see the gap without
+  having to toggle back and forth.
+
+A product not found in this file (a new model released after the file was
+built, for instance) shows as **"Not Classified"** rather than being
+silently guessed either way — the Data Quality tab reports how many
+records that currently affects. To reclassify a product or add a new one,
+edit `data/sdr_eligibility.json` directly: it's a flat `{ "Product Model":
+{ "assignedGroup": ..., "sdrEligible": true/false } }` map.
+
+## 16. Changing SDR% colour thresholds
 
 Open `js/buckets.js` and edit:
 

@@ -11,9 +11,10 @@ function renderTat(ctx) {
     columns: [
       { key: 'key', label: 'Centre' },
       { key: 'validTatCount', label: 'Total Repairs', align: 'right', fmt: r => Utils.fmtNum(r.validTatCount) },
-      { key: 'b02', label: '0-2 Hrs', align: 'right', fmt: r => Utils.fmtNum(r.bucketCounts['0-2 Hrs']), sortValue: r => r.bucketCounts['0-2 Hrs'] },
+      { key: 'b02', label: '0-2 Hrs (SVR)', align: 'right', fmt: r => Utils.fmtNum(r.bucketCounts['0-2 Hrs']), sortValue: r => r.bucketCounts['0-2 Hrs'] },
       { key: 'b24', label: '2-4 Hrs', align: 'right', fmt: r => Utils.fmtNum(r.bucketCounts['2-4 Hrs']), sortValue: r => r.bucketCounts['2-4 Hrs'] },
       { key: 'b48', label: '4-8 Hrs', align: 'right', fmt: r => Utils.fmtNum(r.bucketCounts['4-8 Hrs']), sortValue: r => r.bucketCounts['4-8 Hrs'] },
+      { key: 'svrPct', label: 'SVR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.svrPct)}">${Utils.fmtPct(r.svrPct)}</span>` },
       { key: 'sdr', label: 'SDR', align: 'right', fmt: r => Utils.fmtNum(r.sdr) },
       { key: 'sdrPct', label: 'SDR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.sdrPct)}">${Utils.fmtPct(r.sdrPct)}</span>` },
       { key: 'over8', label: '>8 Hrs', align: 'right', fmt: r => Utils.fmtNum(r.over8) },
@@ -27,6 +28,49 @@ function renderTat(ctx) {
 
   document.getElementById('tat-thresholds').textContent =
     `Colour thresholds — Green ≥ ${Buckets.thresholds.green}% SDR · Amber ${Buckets.thresholds.amber}–${Buckets.thresholds.green - 0.1}% · Red < ${Buckets.thresholds.amber}%`;
+
+  // --- SDR by Device Group — All Devices row is unfiltered by the Device
+  // Group filter itself (so you can always see the full picture alongside
+  // the iPhone/Accessory/Other split, even if you've filtered elsewhere) ---
+  const allDevicesStats = Aggregate.summarize(records, () => 'All Devices')[0];
+  const deviceGroupStats = Aggregate.summarize(records, r => r.deviceGroup);
+  const groupOrder = ['iPhone', 'Apple Accessory', 'Other Device'];
+  const groupRows = [allDevicesStats, ...groupOrder.map(g => deviceGroupStats.find(s => s.key === g))].filter(Boolean);
+  renderTable(document.getElementById('tat-devicegroup-table'), {
+    columns: [
+      { key: 'key', label: 'Device Group' },
+      { key: 'validTatCount', label: 'Repairs', align: 'right', fmt: r => Utils.fmtNum(r.validTatCount) },
+      { key: 'svrPct', label: 'SVR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.svrPct)}">${Utils.fmtPct(r.svrPct)}</span>` },
+      { key: 'sdr', label: 'SDR', align: 'right', fmt: r => Utils.fmtNum(r.sdr) },
+      { key: 'sdrPct', label: 'SDR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.sdrPct)}">${Utils.fmtPct(r.sdrPct)}</span>` },
+      { key: 'over8Pct', label: '>8 %', align: 'right', fmt: r => Utils.fmtPct(r.over8Pct) },
+      { key: 'avgTat', label: 'Avg TAT', align: 'right', fmt: r => Utils.fmtHrs(r.avgTat) },
+      { key: 'medianTat', label: 'Median TAT', align: 'right', fmt: r => Utils.fmtHrs(r.medianTat) },
+    ],
+    rows: groupRows, searchable: false, csvName: 'svr_sdr_by_device_group', pageSize: 5,
+  });
+
+  // --- "True SDR": all repairs vs SDR-eligible-only, side by side ---
+  const eligibleOnly = records.filter(r => r.sdrEligible === 'Eligible');
+  const notEligible = records.filter(r => r.sdrEligible === 'Not Eligible');
+  const notClassified = records.filter(r => r.sdrEligible === 'Not Classified');
+  const eligStats = [
+    { key: 'All Repairs', ...Aggregate.summarize(records, () => 'x')[0] },
+    { key: 'SDR-Eligible Only', ...Aggregate.summarize(eligibleOnly, () => 'x')[0] },
+    { key: 'Not SDR-Eligible', ...Aggregate.summarize(notEligible, () => 'x')[0] },
+  ];
+  if (notClassified.length) eligStats.push({ key: 'Not Classified', ...Aggregate.summarize(notClassified, () => 'x')[0] });
+  renderTable(document.getElementById('tat-eligibility-table'), {
+    columns: [
+      { key: 'key', label: '' },
+      { key: 'validTatCount', label: 'Repairs', align: 'right', fmt: r => Utils.fmtNum(r.validTatCount) },
+      { key: 'svrPct', label: 'SVR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.svrPct)}">${Utils.fmtPct(r.svrPct)}</span>` },
+      { key: 'sdrPct', label: 'SDR %', align: 'right', fmt: r => `<span class="tone-text tone-${Buckets.sdrTier(r.sdrPct)}">${Utils.fmtPct(r.sdrPct)}</span>` },
+      { key: 'avgTat', label: 'Avg TAT', align: 'right', fmt: r => Utils.fmtHrs(r.avgTat) },
+      { key: 'medianTat', label: 'Median TAT', align: 'right', fmt: r => Utils.fmtHrs(r.medianTat) },
+    ],
+    rows: eligStats, searchable: false, csvName: 'true_sdr_eligibility', pageSize: 5,
+  });
 
   // --- TAT by Repair Type ---
   const typeStats = Aggregate.summarize(records, r => r.repairType);

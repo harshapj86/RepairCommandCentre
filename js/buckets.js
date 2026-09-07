@@ -13,6 +13,11 @@ const Buckets = (() => {
     return '>8 Hrs';
   }
   const CREATION_BUCKET_ORDER = ['0-2 Hrs', '2-4 Hrs', '4-8 Hrs', '>8 Hrs', 'Missing / Unmatched'];
+  // SVR (Same Visit Repair) is the 0-2 Hr bucket specifically — a STRICT
+  // SUBSET of SDR (Same Day Repair, <=8 Hrs). Both must always be computed
+  // over the identical population (matched records with a valid TAT) so
+  // that SVR% <= SDR% holds by construction, everywhere both are shown.
+  function isSvr(hours) { return hours !== null && hours !== undefined && hours <= 2; }
   function isSdr(hours) { return hours !== null && hours !== undefined && hours <= 8; }
 
   // End-to-end TAT (Servify request creation -> final closure), closed only
@@ -48,5 +53,5 @@ const Buckets = (() => {
     return 'red';
   }
 
-  return { creationBucket, CREATION_BUCKET_ORDER, isSdr, e2eBucket, E2E_BUCKET_ORDER, agingBucket, AGING_BUCKET_ORDER, thresholds, sdrTier };
+  return { creationBucket, CREATION_BUCKET_ORDER, isSvr, isSdr, e2eBucket, E2E_BUCKET_ORDER, agingBucket, AGING_BUCKET_ORDER, thresholds, sdrTier };
 })();

@@ -1,0 +1,821 @@
+{
+  "_comment": "Product-level SDR eligibility, confirmed by the business owner (2026-09-07). Some product types (e.g. AirPods needing pairing/board diagnostics, Apple Pencil, Mac/iPad/Watch repairs) structurally can't be completed same-day regardless of centre performance, so including them in the SDR% denominator understates 'true' achievable SDR. The 'SDR Eligibility' filter uses this field ONLY as an optional filter -- it does not change the underlying SDR/SVR formulas, and does not affect Device Volume, NTF%, or any other metric unless the filter is explicitly applied.",
+  "products": {
+    "AirPods Pro 2nd Gen": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods 4th Gen": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods Pro 3rd Gen": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Power Adapter": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "Earpods": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "USB-C to Lightening Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "Apple Pencil": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods 2nd Gen": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "USB-C to USB-C Charging Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "AirPods 3rd Gen": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods Pro": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Lightening to USB": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "In-Ear Headphones": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "USB Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "AirPods": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "USB-C Charge Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "USB Type-C to Charge Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "Magic Keyboard": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Apple EarPods In-Ear Wired Headphone": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": true
+    },
+    "USB to 3.5mm Headphone Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Case": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods Max": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirTag": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Magnetic Charging Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Magic Mouse": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Studio Pro": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Earbud Headphones": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Studio Buds+": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Fit Pro In-Ear True Wireless Earbuds": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Solo 4": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Flex In-Ear Neckband Wireless Earphone": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "AirPods Max 2": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "MagSafe Charger": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Solo Buds": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "USB-C to USB adapter": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Powerbeats (1st generation) Round Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Powerbeats Fit": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Studio Buds True Wireless Earbuds": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Digital AV Adapter": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Powerbeats Pro 2": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "MagSafe Battery Pack": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Thunderbolt 3 USB\u201a\u00c4\u00ebC Cable": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "Beats Pill Wireless Portable Speaker": {
+      "assignedGroup": "Apple Accessory",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch M1": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 14 inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad (A16)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch M5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 14 inch M3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 10": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch M3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 14 inch M5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 10th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 15 inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 13 inch M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16 inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Neo 13 inch A18 Pro": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 13 inch (M1)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 11": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 13 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple TV 4K": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 11 inch (M3)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 9th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 15 inch M3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 11 inch (M2)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Mac Mini M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch SE 3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 15 inch M5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 15 inch M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch (M4)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air 13 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch SE 2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 9": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac 24 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Ultra 2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 13 inch (M3)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 13 inch (M4)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air Retina 13 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 7th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 11 inch (M4)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 4th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 6th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 13 inch (M5)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch (M5)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 13 inch (M2)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16 inch M5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 8th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Ultra 3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch 3rd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch 4th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 12.9 inch 6th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 5th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 12.9 inch 5th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Mac mini M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 7": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 15 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 13 inch (M4)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 14 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 7": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Ultra": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16 inch M3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Mac Studio": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 11 inch 2nd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 8": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 12.9 inch 3rd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "HomePod": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 10.5inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 14 inch M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch SE": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 3rd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 6": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac Retina 5K 27 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac 24 inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 12.9 inch 4th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16 inch M2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Studio Display": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Air Retina 13 inch 2020": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 6": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro Retina 15 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro 16-inch M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook 13 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Macbook Retina 12 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "MacBook Pro Retina 13 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Air 10.9inch 5th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 4th Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "HomePod Mini": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple TV HD": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 9.7 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac 21.5 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac Retina 4K 21.5 inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad 2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple Watch SE": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 3": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple TV 3rd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "New MacBook Series 13inch": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 4 Nike+": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple TV": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iMac Pro": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 2": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 6 Nike": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Mac Studio M4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Mini 4": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPad Pro 12.9 inch 2nd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Watch Series 5": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Apple TV 2nd Gen": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "HomePod mini (2021)": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "Mac mini 2018": {
+      "assignedGroup": "Other Device",
+      "sdrEligible": false
+    },
+    "iPhone 13": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 17": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 16": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 15": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 17 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 17 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 16 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 16 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 14": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 14 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 13 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 15 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 14 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 13 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 15 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 12": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 16 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 11": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 15 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 14 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 12 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 16e": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone Air": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 12 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 13 Mini": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 12 Mini": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone XR": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 17e": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone SE 2": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 11 Pro Max": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone SE 3": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 11 Pro": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone XS": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone X": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 7 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 7": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 6s": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 8": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 6": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 8 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 6s Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    },
+    "iPhone 6 Plus": {
+      "assignedGroup": "iPhone",
+      "sdrEligible": true
+    }
+  }
+}

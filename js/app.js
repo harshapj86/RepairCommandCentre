@@ -55,7 +55,18 @@ async function boot() {
       console.warn('location_mapping.json not found or unreadable — Area filter and centre-name merges will be skipped.', e);
     }
 
-    MODEL = Model.build(servifyRows, gsxRows, locationMap);
+    let eligibilityMap = null;
+    try {
+      const eligRes = await fetch('data/sdr_eligibility.json', { cache: 'no-store' });
+      if (eligRes.ok) {
+        const eligJson = await eligRes.json();
+        eligibilityMap = eligJson.products || null;
+      }
+    } catch (e) {
+      console.warn('sdr_eligibility.json not found or unreadable — SDR Eligibility filter will show "Not Classified" for everything.', e);
+    }
+
+    MODEL = Model.build(servifyRows, gsxRows, locationMap, eligibilityMap);
 
     // Determine latest date in the dataset for default reporting date
     let maxT = 0;
@@ -102,6 +113,9 @@ function buildFilterBar() {
   const regions = distinctValues(records, 'region');
   const repairTypes = ['NTF', 'Carry-In', 'Mail-In', 'Other / Unknown'];
   const areas = distinctValues(records, 'area');
+  const deviceGroups = ['iPhone', 'Apple Accessory', 'Other Device'];
+  const centreTypes = distinctValues(records, 'centreType');
+  const sdrEligibility = distinctValues(records, 'sdrEligible');
 
   const bar = document.getElementById('filter-bar');
   bar.innerHTML = `
@@ -121,7 +135,10 @@ function buildFilterBar() {
       ${multiSelectHtml('state', 'State', states)}
       ${multiSelectHtml('region', 'Region', regions)}
       ${multiSelectHtml('area', 'Area (ARM)', areas)}
+      ${multiSelectHtml('centreType', 'Centre Type', centreTypes)}
       ${multiSelectHtml('repairType', 'Repair Type', repairTypes)}
+      ${multiSelectHtml('deviceGroup', 'Device Group', deviceGroups)}
+      ${multiSelectHtml('sdrEligibility', 'SDR Eligibility', sdrEligibility)}
       <button id="clear-filters" class="clear-filters-btn">Clear filters</button>
     </div>
   `;
@@ -141,18 +158,19 @@ function buildFilterBar() {
   document.getElementById('custom-start').addEventListener('change', (e) => { FilterState.state.customStart = e.target.value ? new Date(e.target.value) : null; renderActiveTab(); });
   document.getElementById('custom-end').addEventListener('change', (e) => { FilterState.state.customEnd = e.target.value ? new Date(e.target.value) : null; renderActiveTab(); });
 
-  ['centre', 'city', 'state', 'region', 'area', 'repairType'].forEach(field => wireMultiSelect(field));
+  ['centre', 'city', 'state', 'region', 'area', 'centreType', 'repairType', 'deviceGroup', 'sdrEligibility'].forEach(field => wireMultiSelect(field));
 
   document.getElementById('clear-filters').addEventListener('click', () => {
     FilterState.state.centres = []; FilterState.state.cities = []; FilterState.state.states = [];
     FilterState.state.regions = []; FilterState.state.repairTypes = []; FilterState.state.areas = [];
+    FilterState.state.deviceGroups = []; FilterState.state.centreTypes = []; FilterState.state.sdrEligibility = [];
     buildFilterBar();
     renderActiveTab();
   });
 }
 
 function multiSelectHtml(field, label, options) {
-  const stateKeyMap = { centre: 'centres', city: 'cities', state: 'states', region: 'regions', repairType: 'repairTypes', area: 'areas' };
+  const stateKeyMap = { centre: 'centres', city: 'cities', state: 'states', region: 'regions', repairType: 'repairTypes', area: 'areas', deviceGroup: 'deviceGroups', centreType: 'centreTypes', sdrEligibility: 'sdrEligibility' };
   const selected = FilterState.state[stateKeyMap[field]] || [];
   return `
     <div class="multiselect" data-field="${field}">
@@ -164,7 +182,7 @@ function multiSelectHtml(field, label, options) {
 }
 
 function wireMultiSelect(field) {
-  const stateKeyMap = { centre: 'centres', city: 'cities', state: 'states', region: 'regions', repairType: 'repairTypes', area: 'areas' };
+  const stateKeyMap = { centre: 'centres', city: 'cities', state: 'states', region: 'regions', repairType: 'repairTypes', area: 'areas', deviceGroup: 'deviceGroups', centreType: 'centreTypes', sdrEligibility: 'sdrEligibility' };
   const el = document.querySelector(`.multiselect[data-field="${field}"]`);
   if (!el) return;
   const toggle = el.querySelector('.ms-toggle');

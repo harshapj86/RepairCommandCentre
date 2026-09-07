@@ -11,7 +11,7 @@ const Aggregate = (() => {
       ntf: 0, carryIn: 0, mailIn: 0, other: 0,
       matched: 0, unmatched: 0,
       creationTats: [], // valid (non-exception) hours, matched only
-      over8: 0, sdr: 0,
+      over8: 0, sdr: 0, svr: 0,
       bucketCounts: { '0-2 Hrs': 0, '2-4 Hrs': 0, '4-8 Hrs': 0, '>8 Hrs': 0, 'Missing / Unmatched': 0 },
       open: 0, closed: 0, cancelled: 0,
       e2eTats: [],
@@ -43,8 +43,8 @@ const Aggregate = (() => {
         g.bucketCounts[bucket] = (g.bucketCounts[bucket] || 0) + 1;
         if (r.repairCreationTatHours !== null && r.repairCreationTatHours !== undefined) {
           g.creationTats.push(r.repairCreationTatHours);
-          if (Buckets.isSdr(r.repairCreationTatHours)) g.sdr++;
-          else g.over8++;
+          if (Buckets.isSdr(r.repairCreationTatHours)) g.sdr++; else g.over8++;
+          if (Buckets.isSvr(r.repairCreationTatHours)) g.svr++; // SVR is counted from the SAME population as SDR — a strict subset, never a separate denominator
         }
       }
 
@@ -79,6 +79,7 @@ const Aggregate = (() => {
   function finalize(g) {
     const validTatCount = g.creationTats.length;
     const sdrPct = validTatCount ? Utils.pct(g.sdr, validTatCount) : null;
+    const svrPct = validTatCount ? Utils.pct(g.svr, validTatCount) : null;
     const over8Pct = validTatCount ? Utils.pct(g.over8, validTatCount) : null;
     const engineerCount = g.engineers.size;
     const cceCount = g.cces.size;
@@ -90,7 +91,7 @@ const Aggregate = (() => {
       matched: g.matched, unmatched: g.unmatched,
       validTatCount,
       avgTat: Utils.mean(g.creationTats), medianTat: Utils.median(g.creationTats), p90Tat: Utils.percentile(g.creationTats, 90),
-      sdr: g.sdr, sdrPct, over8: g.over8, over8Pct,
+      sdr: g.sdr, sdrPct, svr: g.svr, svrPct, over8: g.over8, over8Pct,
       bucketCounts: g.bucketCounts,
       open: g.open, closed: g.closed, cancelled: g.cancelled,
       e2eValid: g.e2eValid, avgE2e: Utils.mean(g.e2eTats), medianE2e: Utils.median(g.e2eTats),

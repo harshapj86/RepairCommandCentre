@@ -15,6 +15,9 @@ const FilterState = (() => {
     regions: [],
     repairTypes: [],
     areas: [],
+    deviceGroups: [],
+    centreTypes: [],
+    sdrEligibility: [],
   };
 
   function startOfDay(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0); }
@@ -71,6 +74,9 @@ const FilterState = (() => {
       if (!matchesMultiSelect(r.region, state.regions)) return false;
       if (!matchesMultiSelect(r.repairType, state.repairTypes)) return false;
       if (!matchesMultiSelect(r.area, state.areas)) return false;
+      if (!matchesMultiSelect(r.deviceGroup, state.deviceGroups)) return false;
+      if (!matchesMultiSelect(r.centreType, state.centreTypes)) return false;
+      if (!matchesMultiSelect(r.sdrEligible, state.sdrEligibility)) return false;
       return true;
     });
   }

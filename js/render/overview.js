@@ -12,6 +12,7 @@ function renderOverview(ctx) {
   const inwards = records.filter(r => r.servify.inwardDate).length;
   const validTats = records.filter(r => r.repairCreationTatHours !== null && r.repairCreationTatHours !== undefined).map(r => r.repairCreationTatHours);
   const sdrCount = validTats.filter(h => h <= 8).length;
+  const svrCount = validTats.filter(h => h <= 2).length; // SVR is a strict subset of SDR — same population, same denominator
   const over8Count = validTats.filter(h => h > 8).length;
   const open = records.filter(r => r.requestType === 'Open').length;
   const closed = records.filter(r => r.requestType === 'Closed').length;
@@ -22,6 +23,7 @@ function renderOverview(ctx) {
     { label: 'NTF', value: Utils.fmtNum(ntf), sub: Utils.fmtPct(Utils.pct(ntf, volume)) },
     { label: 'Carry-In', value: Utils.fmtNum(carryIn), sub: Utils.fmtPct(Utils.pct(carryIn, volume)) },
     { label: 'Mail-In', value: Utils.fmtNum(mailIn), sub: Utils.fmtPct(Utils.pct(mailIn, volume)) },
+    { label: 'Same Visit Repair %', value: Utils.fmtPct(Utils.pct(svrCount, validTats.length)), sub: `${Utils.fmtNum(svrCount)} of ${Utils.fmtNum(validTats.length)} matched — within 2 hrs`, tone: Buckets.sdrTier(Utils.pct(svrCount, validTats.length)) },
     { label: 'Same Day Repair %', value: Utils.fmtPct(Utils.pct(sdrCount, validTats.length)), sub: `${Utils.fmtNum(sdrCount)} of ${Utils.fmtNum(validTats.length)} matched`, tone: Buckets.sdrTier(Utils.pct(sdrCount, validTats.length)) },
     { label: 'Average Repair TAT', value: Utils.fmtHrs(Utils.mean(validTats)), sub: 'Servify creation → GSX creation' },
     { label: 'Median Repair TAT', value: Utils.fmtHrs(Utils.median(validTats)), sub: 'Less skewed by outliers' },

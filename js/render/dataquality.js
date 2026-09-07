@@ -46,9 +46,14 @@ function renderDataQuality(dq, ctx) {
     ? `<p><strong>Location mapping loaded</strong> from <code>data/location_mapping.json</code>. Three same-centre name-variant pairs (Guntur, Vizianagaram, Siddipet) are merged into one row each across every table. Centre/City/State plus the new <strong>Area (ARM)</strong> filter are cross-checked against this file; ${Utils.fmtNum(dq.recordsWithUnknownArea)} records belong to a centre not found in the mapping file and show as Area = "Unknown" — see the file's own <code>unmapped</code> entries for which centres those are.</p>`
     : `<p><code>data/location_mapping.json</code> was not found, so centre names are shown exactly as they appear in the raw Servify export (no merging), and the Area (ARM) filter will show "Unknown" for every record.</p>`;
 
+  const eligNote = dq.sdrEligibilityLoaded
+    ? `<p><strong>SDR eligibility loaded</strong> from <code>data/sdr_eligibility.json</code>, confirmed per product model by the business owner. ${dq.recordsNotClassifiedForSdr > 0 ? `<strong>${Utils.fmtNum(dq.recordsNotClassifiedForSdr)}</strong> records have a Product Model not covered by that file (likely a new model since it was built) and show as "Not Classified" in the SDR Eligibility filter until it's added.` : 'Every product model in the current data is covered by that file.'}</p>`
+    : `<p><code>data/sdr_eligibility.json</code> was not found, so the SDR Eligibility filter will show "Not Classified" for every record.</p>`;
+
   const exceptionTotal = dq.negativeCreationTat + dq.negativeE2eTat;
   document.getElementById('dq-note').innerHTML = `
     ${locNote}
+    ${eligNote}
     <p>A record with no named engineer is not one uniform category. <strong>${Utils.fmtNum(dq.missingEngineerClosedByCce)}</strong> were closed directly by the CCE — this is the normal outcome for an NTF diagnosis (no repair needed) and the dominant reason for a missing engineer. <strong>${Utils.fmtNum(dq.missingEngineerCancelled)}</strong> were cancelled before an engineer was ever needed. <strong>${Utils.fmtNum(dq.missingEngineerNotYetAssigned)}</strong> are still open and genuinely awaiting assignment. The Technician Efficiency tab excludes all of these from engineer rankings, since none of them represent workshop repair work.</p>
     ${exceptionTotal > 0
       ? `<p><strong>${Utils.fmtNum(exceptionTotal)} timestamp exceptions</strong> were found (a later stage timestamp earlier than an earlier stage). These are excluded from TAT averages/medians and SDR% everywhere in the dashboard, and are not auto-corrected — treat them as data entry issues to investigate at source.</p>`

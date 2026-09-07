@@ -23,6 +23,40 @@ function cleanPersonName(v) {
   return s;
 }
 
+// Product Model -> Device Group. iPhone is a simple prefix match; the
+// Accessory keyword list is a judgment call (confirmed with the business
+// owner) that includes Beats-branded audio (Apple-owned) and non-cable
+// accessories (Apple Pencil, Magic Keyboard/Mouse, Case, AirTag, MagSafe)
+// alongside the literal cables/adapters/earphones — not just those three.
+// Anything not matched (Mac, iPad, Watch, Apple TV, HomePod, iMac, etc.)
+// is 'Other Device'.
+const ACCESSORY_KEYWORDS = ['cable', 'adapter', 'charg', 'airpods', 'earpods', 'earphone', 'earbud',
+  'headphone', 'beats', 'powerbeats', 'pencil', 'magic keyboard', 'magic mouse',
+  'case', 'airtag', 'magsafe', 'lightening', 'lightning'];
+
+function classifyDeviceGroup(productModel) {
+  if (!productModel) return 'Other Device';
+  const m = String(productModel).toLowerCase();
+  if (m.startsWith('iphone')) return 'iPhone';
+  if (ACCESSORY_KEYWORDS.some(k => m.includes(k))) return 'Apple Accessory';
+  return 'Other Device';
+}
+
+// SDR Eligibility (optional data/sdr_eligibility.json, confirmed by the
+// business owner per product model). Some product types structurally can't
+// be same-day repaired regardless of centre performance (e.g. AirPods
+// needing pairing/board diagnostics, Mac/iPad/Watch repairs needing parts
+// ordered) — including them in the SDR% denominator understates what's
+// actually achievable. This is used ONLY as an optional filter; it never
+// changes the underlying SDR/SVR formulas or any other metric on its own.
+function applySdrEligibility(rec, eligibilityMap) {
+  if (!eligibilityMap) { rec.sdrEligible = 'Not Classified'; return rec; }
+  const entry = eligibilityMap[rec.productModel];
+  if (!entry) { rec.sdrEligible = 'Not Classified'; return rec; }
+  rec.sdrEligible = entry.sdrEligible ? 'Eligible' : 'Not Eligible';
+  return rec;
+}
+
 // When there is no named engineer, the "0" placeholder means one of three
 // different operational things depending on the request's own status —
 // not a single generic "unassigned" bucket:
@@ -43,11 +77,12 @@ function deriveEngineerStatus(requestType) {
 // a reliable "Area" grouping — the source data's own Region field is only
 // ~20% filled, so Area/ARM is the more useful geography dimension.
 function applyLocationMapping(rec, locationMap) {
-  if (!locationMap) { rec.area = 'Unknown'; return rec; }
+  if (!locationMap) { rec.area = 'Unknown'; rec.centreType = 'Unknown'; return rec; }
   const entry = locationMap[rec.centre];
-  if (!entry) { rec.area = 'Unknown'; return rec; }
+  if (!entry) { rec.area = 'Unknown'; rec.centreType = 'Unknown'; return rec; }
   if (entry.canonicalName && entry.canonicalName !== rec.centre) rec.centre = entry.canonicalName;
   rec.area = entry.arm || 'Unknown';
+  rec.centreType = entry.locationType || 'Unknown';
   return rec;
 }
 
@@ -123,6 +158,7 @@ const Model = (() => {
       cce: cceRaw, // null => not attributable to a CCE
       repairTypeDescRaw: repairTypeDesc,
       repairTypeNorm: normalizeRepairType(repairTypeDesc),
+      deviceGroup: classifyDeviceGroup(row['Product Model']),
       quantity: row['Quantity'] || null,
     };
   }
@@ -149,7 +185,7 @@ const Model = (() => {
 
   // Build the full in-memory model from raw parsed rows.
   // locationMap (optional) is the `.locations` object from data/location_mapping.json.
-  function build(servifyRows, gsxRows, locationMap) {
+  function build(servifyRows, gsxRows, locationMap, eligibilityMap) {
     const dq = {
       totalServifyRows: servifyRows.length,
       totalGsxRows: gsxRows.length,
@@ -171,6 +207,8 @@ const Model = (() => {
       futureTimestamps: 0,
       locationMappingLoaded: !!locationMap,
       recordsWithUnknownArea: 0,
+      sdrEligibilityLoaded: !!eligibilityMap,
+      recordsNotClassifiedForSdr: 0,
     };
 
     // ---- Normalize Servify, dedup on servifyRef (keep most complete/latest) ----
@@ -179,7 +217,9 @@ const Model = (() => {
     for (const raw of servifyRows) {
       const rec = normalizeServifyRow(raw);
       applyLocationMapping(rec, locationMap);
+      applySdrEligibility(rec, eligibilityMap);
       if (rec.area === 'Unknown') dq.recordsWithUnknownArea++;
+      if (rec.sdrEligible === 'Not Classified') dq.recordsNotClassifiedForSdr++;
       if (!rec.servifyRef) { dq.missingServifyRef++; continue; }
       if (!rec.requestCreationDate) dq.missingRequestCreationDate++;
       if (!rec.inwardDate) dq.missingInwardDate++;
@@ -256,8 +296,10 @@ const Model = (() => {
         servifyRef: ref,
         gsxRepairId: lastGsx.repairId,
         gsxDupCount: gsxGroup.length,
-        centre: s.centre, city: s.city, state: s.state, region: s.region, area: s.area,
+        centre: s.centre, city: s.city, state: s.state, region: s.region, area: s.area, centreType: s.centreType,
         repairType: s.repairTypeNorm,
+        deviceGroup: s.deviceGroup,
+        sdrEligible: s.sdrEligible,
         productModel: s.productModel,
         engineer: s.engineer,
         engineerStatus: s.engineer ? null : deriveEngineerStatus(s.requestType),
@@ -282,8 +324,10 @@ const Model = (() => {
         servifyRef: s.servifyRef,
         gsxRepairId: null,
         gsxDupCount: 0,
-        centre: s.centre, city: s.city, state: s.state, region: s.region, area: s.area,
+        centre: s.centre, city: s.city, state: s.state, region: s.region, area: s.area, centreType: s.centreType,
         repairType: s.repairTypeNorm,
+        deviceGroup: s.deviceGroup,
+        sdrEligible: s.sdrEligible,
         productModel: s.productModel,
         engineer: s.engineer,
         engineerStatus: s.engineer ? null : deriveEngineerStatus(s.requestType),
